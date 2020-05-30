@@ -1,4 +1,4 @@
-package com.masivian.test.repository.utils;
+package com.masivian.cleancode.repository.utils;
 
 public enum Operations {
 	ROULETTE("ROULETTE"),

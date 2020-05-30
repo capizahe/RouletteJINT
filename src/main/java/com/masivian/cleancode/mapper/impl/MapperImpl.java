@@ -1,13 +1,13 @@
-package com.masivian.test.mapper.impl;
+package com.masivian.cleancode.mapper.impl;
 
 import java.io.IOException;
 
 import javax.annotation.Resource;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.masivian.test.mapper.Mapper;
-import com.masivian.test.model.Bet;
-import com.masivian.test.model.Roulette;
+import com.masivian.cleancode.mapper.Mapper;
+import com.masivian.cleancode.model.Bet;
+import com.masivian.cleancode.model.Roulette;
 
 @Resource(name = "mapper")
 public class MapperImpl implements Mapper {

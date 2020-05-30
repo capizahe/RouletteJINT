@@ -1,7 +1,8 @@
-package com.masivian.test.repository;
+package com.masivian.cleancode.repository;
 
 import java.util.Map;
-import com.masivian.test.model.Roulette;
+
+import com.masivian.cleancode.model.Roulette;
 
 public interface RouletteRepository {
 	

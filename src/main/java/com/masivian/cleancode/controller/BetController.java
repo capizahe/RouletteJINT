@@ -1,8 +1,8 @@
-package com.masivian.test.controller;
+package com.masivian.cleancode.controller;
 
 import java.util.Map;
 
-import com.masivian.test.model.Bet;
+import com.masivian.cleancode.model.Bet;
 
 public interface BetController {
 	

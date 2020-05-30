@@ -1,4 +1,4 @@
-package com.masivian.test;
+package com.masivian.cleancode;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

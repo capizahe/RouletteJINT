@@ -1,25 +1,23 @@
-package com.masivian.test.repository.impl;
+package com.masivian.cleancode.repository.impl;
 
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.masivian.test.mapper.Mapper;
-import com.masivian.test.mapper.impl.MapperImpl;
-import com.masivian.test.model.Bet;
-import com.masivian.test.repository.BetRepository;
-import com.masivian.test.repository.utils.Operations;
+import com.masivian.cleancode.mapper.Mapper;
+import com.masivian.cleancode.mapper.impl.MapperImpl;
+import com.masivian.cleancode.model.Bet;
+import com.masivian.cleancode.repository.BetRepository;
+import com.masivian.cleancode.repository.utils.Operations;
 
 @Repository
 public class BetRepositoryImpl implements BetRepository{
 
-	private Mapper mapper;
 	
 	private RedisTemplate<String, Bet> reddisTemplate;
 	private HashOperations<String, Long, Bet> hashOperations;
@@ -35,8 +33,7 @@ public class BetRepositoryImpl implements BetRepository{
 	}
 	
 	@Override
-	public Long createBet(@RequestBody String payload) {
-		Bet bet  = this.mapper.convertToBet(payload);
+	public Long createBet(Bet bet) {		
 		this.hashOperations.put(Operations.BET.getOperation(), bet.getId(), bet);
 		return bet.getId();
 	}

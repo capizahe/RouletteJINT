@@ -1,12 +1,12 @@
-package com.masivian.test;
+package com.masivian.cleancode;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
-import com.masivian.test.model.Bet;
-import com.masivian.test.model.Roulette;
+import com.masivian.cleancode.model.Bet;
+import com.masivian.cleancode.model.Roulette;
 
 @Configuration
 public class ReddisConfigurartion {

@@ -1,4 +1,4 @@
-package com.masivian.test.model;
+package com.masivian.cleancode.model;
 
 import java.io.Serializable;
 

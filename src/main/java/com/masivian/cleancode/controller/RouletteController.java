@@ -1,8 +1,8 @@
-package com.masivian.test.controller;
+package com.masivian.cleancode.controller;
 
 import java.util.Map;
 
-import com.masivian.test.model.Roulette;
+import com.masivian.cleancode.model.Roulette;
 
 public interface RouletteController {
 	Long createRoulette();
