@@ -6,14 +6,14 @@ import java.util.Random;
 public class Bet implements Serializable{
 	
 	private static final long serialVersionUID = -3670324679753342201L;
-	private long id;
-	private int number;
+	private Long id;
+	private Integer number;
 	private String color;
-	private double actual_bet;
-	private long roulette_id;
+	private Double actual_bet;
+	private Long roulette_id;
+	private Long userid;
 	
-	public Bet(int number, String color, double actual_bet, long roulette_id) {
-		super();
+	public Bet(Integer number, String color, Double actual_bet, Long roulette_id) {
 		this.id = new Random().nextLong();
 		this.number = number;
 		this.color = color;
@@ -22,23 +22,27 @@ public class Bet implements Serializable{
 	}
 
 	public Bet() {
-		
+		this.id = Math.abs(new Random().nextLong());
 	}
 	
-	public int getNumber() {
+	public Long getUserid() {
+		return userid;
+	}
+
+	public void setUserid(Long userid) {
+		this.userid = userid;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public Integer getNumber() {
 		return number;
 	}
 
-	public void setNumber(int number) {
+	public void setNumber(Integer number) {
 		this.number = number;
-	}
-
-	public double getActualBet() {
-		return actual_bet;
-	}
-
-	public void setActualBet(double bet) {
-		this.actual_bet = bet;
 	}
 
 	public String getColor() {
@@ -49,15 +53,21 @@ public class Bet implements Serializable{
 		this.color = color;
 	}
 
-	public long getId() {
-		return id;
+	public Double getActualBet() {
+		return actual_bet;
 	}
 
-	public long getRouletteId() {
+	public void setActualBet(Double actual_bet) {
+		this.actual_bet = actual_bet;
+	}
+
+	public Long getRouletteId() {
 		return roulette_id;
 	}
 
-	public void setRouletteId(long roulette_id) {
+	public void setRouletteId(Long roulette_id) {
 		this.roulette_id = roulette_id;
 	}
+	
+	
 }
