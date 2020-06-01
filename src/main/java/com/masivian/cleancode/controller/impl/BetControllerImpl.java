@@ -59,6 +59,8 @@ public class BetControllerImpl implements BetController{
 	@Override
 	@GetMapping(path="/all/{id}",produces = "Application/json")
 	public @ResponseBody Map<Long,Bet> closedBets(@PathParam("id")Long roulette_id) {
-		return this.betRepository.closeBet();
+//		return this.betRepository.closeBet();
+		return null;
+
 	}
 }

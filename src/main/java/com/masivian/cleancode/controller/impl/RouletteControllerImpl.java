@@ -33,7 +33,7 @@ public class RouletteControllerImpl implements RouletteController{
 	 */
 	@Override
 	@GetMapping("/init")
-	public Long createRoulette() {
+	public @ResponseBody Long createRoulette() {
 		return this.rouletteRepository.createRoulette();
 	}
 
@@ -44,7 +44,7 @@ public class RouletteControllerImpl implements RouletteController{
 	 */
 	@Override
 	@GetMapping("/start")
-	public String startRoulette(Long roulette_id) {		
+	public @ResponseBody String startRoulette(Long roulette_id) {		
 		return this.rouletteRepository.isAvaliableRoulette(roulette_id)?"OPERACION EXITOSA":"OPERACION DENEGADA";
 	}
 	
@@ -55,7 +55,7 @@ public class RouletteControllerImpl implements RouletteController{
 	 */
 	@Override
 	@GetMapping("/stop/{id}")
-	public String stopRoulette(@PathVariable("id")Long roulette_id) {		
+	public @ResponseBody String stopRoulette(@PathVariable("id")Long roulette_id) {		
 		if(this.rouletteRepository.isAvaliableRoulette(roulette_id)) {
 		   if(this.rouletteRepository.updateStatus(roulette_id, false))
 			   return "OPERACION EXITOSA";
@@ -69,7 +69,7 @@ public class RouletteControllerImpl implements RouletteController{
 	 */
 	@Override
 	@GetMapping("/all")
-	public Map<Long,Roulette> createdRoulettes() {
+	public @ResponseBody Map<Long,Roulette> createdRoulettes() {
 		return this.rouletteRepository.getAllRoulettes();
 	}
 	

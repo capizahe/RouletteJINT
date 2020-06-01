@@ -14,6 +14,11 @@ public class MapperImpl implements Mapper {
 	
 	private ObjectMapper objMapper = new ObjectMapper();
 	
+	/**
+	 * Recieves a json string and converts it into a bet object.
+	 * @param payload
+	 * @return Bet
+	 */
 	@Override
 	public Bet convertToBet(String payload) {
 		Bet bet = null;
@@ -25,6 +30,11 @@ public class MapperImpl implements Mapper {
 		return bet;
 	}
 
+	/**
+	 * Recieves a json string and converts it intoa roulette object.
+	 * @param payload 
+	 * @return Roulette
+	 */
 	@Override
 	public Roulette convertToRoulette(String payload) {
 		Roulette roulette = null;

@@ -7,7 +7,6 @@ import javax.annotation.PostConstruct;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.masivian.cleancode.mapper.Mapper;
 import com.masivian.cleancode.mapper.impl.MapperImpl;
@@ -24,7 +23,6 @@ public class BetRepositoryImpl implements BetRepository{
 	
 	public BetRepositoryImpl(RedisTemplate<String, Bet> redisTemplate) {
 		this.reddisTemplate = redisTemplate;
-		this.mapper = new MapperImpl();
 	}
 	
 	@PostConstruct
@@ -47,5 +45,7 @@ public class BetRepositoryImpl implements BetRepository{
 	public Map<Long, Bet> getAllBets() {
 		return this.hashOperations.entries(Operations.BET.getOperation());
 	}
+	
+	
 
 }

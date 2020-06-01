@@ -2,8 +2,11 @@ package com.masivian.cleancode.repository;
 
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import com.masivian.cleancode.model.Roulette;
 
+@Repository
 public interface RouletteRepository {
 	
 	long createRoulette();

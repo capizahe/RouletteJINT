@@ -4,6 +4,7 @@ public enum Operations {
 	ROULETTE("ROULETTE"),
 	BET("BET");
 	
+	
 	private String text;
 	
 	private Operations(String text) {
