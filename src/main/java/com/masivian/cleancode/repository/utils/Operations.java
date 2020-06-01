@@ -2,7 +2,8 @@ package com.masivian.cleancode.repository.utils;
 
 public enum Operations {
 	ROULETTE("ROULETTE"),
-	BET("BET");
+	BET("BET"),
+	USER("USER");
 	
 	
 	private String text;

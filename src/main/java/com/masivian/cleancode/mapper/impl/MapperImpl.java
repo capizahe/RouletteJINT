@@ -8,12 +8,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.masivian.cleancode.mapper.Mapper;
 import com.masivian.cleancode.model.Bet;
 import com.masivian.cleancode.model.Roulette;
+import com.masivian.cleancode.model.User;
 
 @Resource(name = "mapper")
 public class MapperImpl implements Mapper {
-	
+
 	private ObjectMapper objMapper = new ObjectMapper();
-	
+
 	/**
 	 * Recieves a json string and converts it into a bet object.
 	 * @param payload
@@ -31,7 +32,7 @@ public class MapperImpl implements Mapper {
 	}
 
 	/**
-	 * Recieves a json string and converts it intoa roulette object.
+	 * Recieves a json string and converts it into a roulette object.
 	 * @param payload 
 	 * @return Roulette
 	 */
@@ -44,6 +45,22 @@ public class MapperImpl implements Mapper {
 			System.err.println(e);
 		}	
 		return roulette;
+	}
+
+	/**
+	 * Recieves a json string and converts it into a user
+	 * @param payload
+	 * @return User
+	 */
+	@Override
+	public User convertToUser(String payload) {
+		User user = null;
+		try {
+			user = objMapper.readValue(payload, User.class);
+		} catch (IOException e) {
+			System.err.println(e);
+		}	
+		return user;
 	}
 
 }
