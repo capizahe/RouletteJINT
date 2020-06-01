@@ -63,6 +63,7 @@ public class BetControllerImpl implements BetController{
 				}
 			}
 		}
+
 		return null;	
 	}
 
@@ -84,7 +85,6 @@ public class BetControllerImpl implements BetController{
 	@Override
 	@GetMapping(path="/close/results/{id}", produces = "Application/json")
 	public @ResponseBody Map<Long,Bet> closedBets(@PathVariable("id")Long roulette_id) {
-		System.out.println(roulette_id);
 		Map<Long,Bet> winners = new HashMap<Long, Bet>();
 		if(this.rouletteRepository.isAvaliableRoulette(roulette_id)) {
 			this.rouletteRepository.updateStatus(roulette_id,false); //Closes the roulette
