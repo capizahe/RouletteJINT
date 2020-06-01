@@ -6,6 +6,7 @@ import javax.websocket.server.PathParam;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -42,8 +43,9 @@ public class BetControllerImpl implements BetController{
 	@Override
 	@PostMapping(path="/create", produces = "Application/json")
 	public @ResponseBody Long createBet(@RequestHeader(name = "USER-ID") String userid, @RequestBody String bet) {
-		if(userid != null) {
+		if(userid != null && !userid.equals("") ) {
 			Bet new_bet  = this.mapper.convertToBet(bet);
+			new_bet.setUserid(Long.parseLong(userid));
 			if(rouletteRepository.isAvaliableRoulette(new_bet.getRouletteId())) {
 				return this.betRepository.createBet(new_bet);
 			}
@@ -52,15 +54,38 @@ public class BetControllerImpl implements BetController{
 	}
 
 	/**
+	 * This method retrieves the list of bet
+	 * @return list of bets
+	 */
+	@Override
+	@GetMapping(path="/allbets", produces = "Application/json")
+	public @ResponseBody Map<Long,Bet> getAllBets(){
+		return this.betRepository.getAllBets();
+	}
+
+	/**
 	 * This method closes the bets for an specific roulettes
 	 * @return list of bets
 	 * @param id of the roulette
 	 */
 	@Override
-	@GetMapping(path="/all/{id}",produces = "Application/json")
-	public @ResponseBody Map<Long,Bet> closedBets(@PathParam("id")Long roulette_id) {
-//		return this.betRepository.closeBet();
+	public @ResponseBody Map<Long,Bet> closedBets(@PathVariable("id")Long roulette_id) {
+		//		return this.betRepository.closeBet();
 		return null;
 
 	}
+
+	/**
+	 * This method retrieves the list of bets by roulette
+	 * @param roulette_id of the roulette
+	 * @return list of bets 
+	 */
+	@Override
+	@GetMapping(path="/all/{id}",produces = "Application/json")	
+	public @ResponseBody Map<Long, Bet> getAllRouletteBets(@PathVariable("id")Long roulette_id) {
+		if(this.rouletteRepository.isAvaliableRoulette(roulette_id)) 
+			return this.betRepository.getAllBetsByRoulette(roulette_id);
+		return null;
+
+	}	
 }

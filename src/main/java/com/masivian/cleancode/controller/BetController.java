@@ -8,5 +8,6 @@ public interface BetController {
 	
 	Long createBet(String userid,String bet);
 	Map<Long, Bet> closedBets(Long id);
-
+	Map<Long,Bet> getAllBets();
+	Map<Long,Bet> getAllRouletteBets(Long id);
 }

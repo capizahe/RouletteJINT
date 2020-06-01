@@ -10,7 +10,8 @@ import com.masivian.cleancode.model.Bet;
 public interface BetRepository {
 	
 	Long createBet(Bet bet);
-	Bet getBet(long id);
+	Bet getBet(Long id);
 	Map<Long,Bet> getAllBets();
+	Map<Long, Bet> getAllBetsByRoulette(Long id);
 	
 }

@@ -83,8 +83,9 @@ public class RouletteControllerImpl implements RouletteController{
 	public @ResponseBody String getNumberOfBetsByRoulette(@PathVariable("id")Long id) {
 		this.numberOfBets = 0;
 		this.betRepository.getAllBets().forEach((key,bet) ->{
-			if(bet.getRouletteId() == id) {
+			if(bet.getRouletteId().equals(id)) {
 				numberOfBets++;
+				
 			}
 		});
 		return "The number of bets for Roulette "+id+" is "+numberOfBets;

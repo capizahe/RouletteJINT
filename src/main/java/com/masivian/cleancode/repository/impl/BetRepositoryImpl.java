@@ -1,5 +1,6 @@
 package com.masivian.cleancode.repository.impl;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -17,7 +18,6 @@ import com.masivian.cleancode.repository.utils.Operations;
 @Repository
 public class BetRepositoryImpl implements BetRepository{
 
-	
 	private RedisTemplate<String, Bet> reddisTemplate;
 	private HashOperations<String, Long, Bet> hashOperations;
 	
@@ -31,13 +31,13 @@ public class BetRepositoryImpl implements BetRepository{
 	}
 	
 	@Override
-	public Long createBet(Bet bet) {		
+	public Long createBet(Bet bet) {
 		this.hashOperations.put(Operations.BET.getOperation(), bet.getId(), bet);
 		return bet.getId();
 	}
 
 	@Override
-	public Bet getBet(long id) {
+	public Bet getBet(Long id) {
 		return this.hashOperations.get(Operations.BET.getOperation(),id);
 	}
 
@@ -45,6 +45,21 @@ public class BetRepositoryImpl implements BetRepository{
 	public Map<Long, Bet> getAllBets() {
 		return this.hashOperations.entries(Operations.BET.getOperation());
 	}
+
+	@Override
+	public Map<Long, Bet> getAllBetsByRoulette(Long id) {
+		Map<Long,Bet> bets = new HashMap<Long, Bet>();
+		this.getAllBets().forEach((key,bet) -> {
+			System.out.println(key);
+			if(bet.getRouletteId().equals(id)){
+				System.out.println(bets.put(key, bet));
+			}
+		});
+		return bets;
+	}
+
+	
+
 	
 	
 
