@@ -9,8 +9,6 @@ import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.masivian.cleancode.mapper.Mapper;
-import com.masivian.cleancode.mapper.impl.MapperImpl;
 import com.masivian.cleancode.model.Bet;
 import com.masivian.cleancode.repository.BetRepository;
 import com.masivian.cleancode.repository.utils.Operations;
@@ -30,29 +28,48 @@ public class BetRepositoryImpl implements BetRepository{
 		this.hashOperations = reddisTemplate.opsForHash();
 	}
 	
+	/**
+	 * This method stores bet 
+	 */
 	@Override
 	public Long createBet(Bet bet) {
 		this.hashOperations.put(Operations.BET.getOperation(), bet.getId(), bet);
 		return bet.getId();
+		
 	}
 
+	/**
+	 * This method returns a bet by its id
+	 * @param Bet id
+	 * @return Returns an specific bet
+	 */
 	@Override
 	public Bet getBet(Long id) {
 		return this.hashOperations.get(Operations.BET.getOperation(),id);
+		
 	}
 
+	/**
+	 * This method returns all the bets
+	 * @return List of bets
+	 */
 	@Override
 	public Map<Long, Bet> getAllBets() {
 		return this.hashOperations.entries(Operations.BET.getOperation());
+		
 	}
 
+	/**
+	 * This method returns all the bets from a specific roulette
+	 * @param Roulette id
+	 * @return List of bets by roulette
+	 */
 	@Override
 	public Map<Long, Bet> getAllBetsByRoulette(Long id) {
 		Map<Long,Bet> bets = new HashMap<Long, Bet>();
 		this.getAllBets().forEach((key,bet) -> {
-			System.out.println(key);
 			if(bet.getRouletteId().equals(id)){
-				System.out.println(bets.put(key, bet));
+				bets.put(key, bet);
 			}
 		});
 		return bets;

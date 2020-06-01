@@ -13,4 +13,5 @@ public interface RouletteRepository {
 	boolean isAvaliableRoulette(Long id);
 	Map<Long, Roulette> getAllRoulettes();
 	boolean updateStatus(Long id, boolean status);
+	Roulette getRoulette(Long id);
 }

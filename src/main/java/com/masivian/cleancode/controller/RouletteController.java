@@ -10,5 +10,6 @@ public interface RouletteController {
 	Map<Long, Roulette> createdRoulettes();
 	String getNumberOfBetsByRoulette(Long id);
 	String stopRoulette(Long roulette_id);
+	
 }
 

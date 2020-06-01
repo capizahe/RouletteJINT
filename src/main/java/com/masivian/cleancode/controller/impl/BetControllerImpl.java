@@ -1,5 +1,6 @@
 package com.masivian.cleancode.controller.impl;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import com.masivian.cleancode.controller.BetController;
 import com.masivian.cleancode.mapper.Mapper;
 import com.masivian.cleancode.mapper.impl.MapperImpl;
 import com.masivian.cleancode.model.Bet;
+import com.masivian.cleancode.model.Roulette;
 import com.masivian.cleancode.model.User;
 import com.masivian.cleancode.repository.BetRepository;
 import com.masivian.cleancode.repository.RouletteRepository;
@@ -80,9 +82,22 @@ public class BetControllerImpl implements BetController{
 	 * @param id of the roulette
 	 */
 	@Override
+	@GetMapping(path="/close/results/{id}", produces = "Application/json")
 	public @ResponseBody Map<Long,Bet> closedBets(@PathVariable("id")Long roulette_id) {
-		//		return this.betRepository.closeBet();
-		return null;
+		System.out.println(roulette_id);
+		Map<Long,Bet> winners = new HashMap<Long, Bet>();
+		if(this.rouletteRepository.isAvaliableRoulette(roulette_id)) {
+			this.rouletteRepository.updateStatus(roulette_id,false); //Closes the roulette
+			Roulette final_resoults = this.rouletteRepository.getRoulette(roulette_id);
+			this.getAllRouletteBets(roulette_id).forEach((key,bet) -> {
+				if(bet.getColor().equals(final_resoults.getFinalColor())) {
+					winners.put(key, bet);
+				}else if(bet.getNumber().equals(final_resoults.getFinalResult())) {
+					winners.put(key, bet);
+				}
+			});
+		}
+		return winners;
 
 	}
 
@@ -99,4 +114,5 @@ public class BetControllerImpl implements BetController{
 		return null;
 
 	}	
+
 }

@@ -29,7 +29,8 @@ public class RouletteRepositoryImpl implements RouletteRepository{
 	}
 
 	/**
-	 * @return id of the created roulettes
+	 * This method creates a roulette.
+	 * @return id of the created roulettes,
 	 */
 	@Override
 	public long createRoulette() {
@@ -40,6 +41,7 @@ public class RouletteRepositoryImpl implements RouletteRepository{
 	}
 
 	/**
+	 * This method verifies if a roulette is currently active.
 	 * @param id of the roulette
 	 */
 	@Override
@@ -50,6 +52,7 @@ public class RouletteRepositoryImpl implements RouletteRepository{
 	}
 
 	/**
+	 * This method returns all roulettes.
 	 * @return list of roulettes
 	 */
 	@Override
@@ -59,8 +62,9 @@ public class RouletteRepositoryImpl implements RouletteRepository{
 	}
 
 	/**
-	 * @param id of the roulette
-	 * @param desired status for the roulette
+	 * This method updates the status of a roulette from active to inactive
+	 * @param id of the roulette.
+	 * @param desired status for the roulette.
 	 */
 	@Override
 	public boolean updateStatus(Long id, boolean status) {
@@ -75,7 +79,6 @@ public class RouletteRepositoryImpl implements RouletteRepository{
 			}
 		}
 		return false;
-		
 	}
 
 	/**
@@ -92,6 +95,17 @@ public class RouletteRepositoryImpl implements RouletteRepository{
 		else if(number == 28) return "BLACK";
 		else if(number <= 36) return (number%2==0)?"RED":"BLACK";
 		return null;
+		
+	}
+
+	/**
+	 * This method retrieves an specific roulette.
+	 * @param Id of the roulette.
+	 * @return Roulette
+	 */
+	@Override
+	public Roulette getRoulette(Long id) {
+		return this.hashOperations.get(Operations.ROULETTE.getOperation(), id);
 		
 	}
 
