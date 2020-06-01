@@ -16,16 +16,16 @@ public class Mock {
 	
 	public Bet createNumberBet(){
 		Bet bet = new Bet();
-		bet.setRouletteId(123456789);
-		bet.setActualBet(20000);
+		bet.setRouletteId(123456789L);
+		bet.setActualBet(20000D);
 		bet.setNumber(10);
 		return bet;
 	}
 	
 	public Bet createColorBet() {
 		Bet bet = new Bet();
-		bet.setRouletteId(123456789);
-		bet.setActualBet(20000);
+		bet.setRouletteId(123456789L);
+		bet.setActualBet(20000D);
 		bet.setColor("RED");
 		return bet;
 	}
