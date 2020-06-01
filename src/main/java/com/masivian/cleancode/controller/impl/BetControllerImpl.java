@@ -19,6 +19,7 @@ import com.masivian.cleancode.mapper.impl.MapperImpl;
 import com.masivian.cleancode.model.Bet;
 import com.masivian.cleancode.repository.BetRepository;
 import com.masivian.cleancode.repository.RouletteRepository;
+import com.masivian.cleancode.repository.utils.Validations;
 
 @Controller
 @RequestMapping("/bet")
@@ -43,7 +44,7 @@ public class BetControllerImpl implements BetController{
 	@Override
 	@PostMapping(path="/create", produces = "Application/json")
 	public @ResponseBody Long createBet(@RequestHeader(name = "USER-ID") String userid, @RequestBody String bet) {
-		if(userid != null && !userid.equals("") ) {
+		if(Validations.validateString(userid)) {
 			Bet new_bet  = this.mapper.convertToBet(bet);
 			new_bet.setUserid(Long.parseLong(userid));
 			if(rouletteRepository.isAvaliableRoulette(new_bet.getRouletteId())) {
